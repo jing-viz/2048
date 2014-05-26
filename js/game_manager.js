@@ -1,3 +1,5 @@
+var gGame;
+
 function GameManager(size, InputManager, Actuator, StorageManager) {
   this.size           = size; // Size of the grid
   this.inputManager   = new InputManager;
@@ -19,6 +21,22 @@ GameManager.prototype.restart = function () {
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
 };
+
+GameManager.prototype.update = function() {
+    var milli = Math.round((new Date() - this.startTime) * 0.001);
+    var totalSec = 60;
+
+    if (milli >= totalSec) {
+      this.over = true;
+      if (milli == totalSec) {
+        this.actuate();
+      }
+      this.gameIntro.innerHTML = 'Done';
+    }
+    else {
+      this.gameIntro.innerHTML = (totalSec - milli) + ' seconds';
+    }
+}
 
 // Keep playing after winning (allows going over 2048)
 GameManager.prototype.keepPlaying = function () {
@@ -57,6 +75,11 @@ GameManager.prototype.setup = function () {
     // Add the initial tiles
     this.addStartTiles();
   }
+
+  this.gameIntro = document.querySelector(".game-intro");
+  this.startTime = new Date();
+
+  window.setInterval("gGame.update()", 1000);
 
   // Update the actuator
   this.actuate();
@@ -274,3 +297,8 @@ GameManager.prototype.tileMatchesAvailable = function () {
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
+
+// Wait till the browser is ready to render the game (avoids glitches)
+window.requestAnimationFrame(function () {
+  gGame = new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager);
+});
