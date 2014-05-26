@@ -12,6 +12,12 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
+  this.totalSec = 60;
+  if (document.location.hostname == "localhost" || document.location.hostname == "") {
+    // for quick develop
+    this.totalSec = 10;
+  }  
+
   this.setup();
 }
 
@@ -24,17 +30,16 @@ GameManager.prototype.restart = function () {
 
 GameManager.prototype.update = function() {
     var milli = Math.round((new Date() - this.startTime) * 0.001);
-    var totalSec = 60;
 
-    if (milli >= totalSec) {
+    if (milli >= this.totalSec) {
       this.over = true;
-      if (milli == totalSec) {
+      if (milli == this.totalSec) {
         this.actuate();
       }
       this.gameIntro.innerHTML = 'Done';
     }
     else {
-      this.gameIntro.innerHTML = (totalSec - milli) + ' seconds';
+      this.gameIntro.innerHTML = (this.totalSec - milli) + ' seconds';
     }
 }
 
