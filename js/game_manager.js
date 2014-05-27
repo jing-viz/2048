@@ -15,7 +15,7 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.totalSec = 60;
   if (document.location.hostname == "localhost" || document.location.hostname == "") {
     // for quick develop
-    this.totalSec = 10;
+    this.totalSec = 60;
   }  
 
   this.setup();

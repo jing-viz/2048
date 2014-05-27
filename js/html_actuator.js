@@ -4,6 +4,9 @@ function HTMLActuator() {
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
+  this.answerLhs        = document.querySelector(".answer-lhs");
+  this.answerRhs        = document.querySelector(".answer-rhs");
+
   this.score = 0;
 }
 
@@ -26,9 +29,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     if (metadata.terminated) {
       if (metadata.over) {
-        self.message(false); // You lose
+        self.message("Game Over!"); // You lose
       } else if (metadata.won) {
-        self.message(true); // You win!
+        self.message("You Win!"); // You win!
       }
     }
 
@@ -56,6 +59,10 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
+
+  if (tile.value > 10) {
+    this.message("德州仪器是哪国公司？", "美国", "中国");
+  }
 
   if (tile.value > 2048) classes.push("tile-super");
 
@@ -124,16 +131,17 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
   this.bestContainer.textContent = bestScore;
 };
 
-HTMLActuator.prototype.message = function (won) {
-  var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
-
+HTMLActuator.prototype.message = function (title, lhs, rhs) {
+  var type    = (typeof lhs !== "undefined") ? "game-quiz" : "game-over";
+  // var message = won ? "You win!" : "Game over!";
   this.messageContainer.classList.add(type);
-  this.messageContainer.getElementsByTagName("p")[0].textContent = message;
+  this.messageContainer.getElementsByTagName("p")[0].textContent = title;
+  this.answerLhs.textContent = lhs;
+  this.answerRhs.textContent = rhs;
 };
 
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
-  this.messageContainer.classList.remove("game-won");
+  this.messageContainer.classList.remove("game-quiz");
   this.messageContainer.classList.remove("game-over");
 };

@@ -252,27 +252,31 @@ hr {
     line-height: 42px;
     cursor: pointer;
     margin-left: 9px; }
-    .game-message a.keep-playing-button {
+    .game-message a.answer-lhs{
       display: none; }
+    .game-message a.answer-rhs{
+      display: none; }  
   .game-message .score-sharing {
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px; }
-  .game-message.game-won {
+  .game-message.game-quiz {
     background: rgba(237, 194, 46, 0.5);
     color: #f9f6f2; }
-    .game-message.game-won a.keep-playing-button {
+    .game-message.game-quiz a.answer-lhs {
       display: inline-block; }
-  .game-message.game-won, .game-message.game-over {
+    .game-message.game-quiz a.answer-rhs {
+      display: inline-block; }  
+  .game-message.game-quiz, .game-message.game-over {
     display: block; }
-    .game-message.game-won p, .game-message.game-over p {
+    .game-message.game-quiz p, .game-message.game-over p {
       -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
       -moz-animation: slide-up 1.5s ease-in-out 2500ms;
       animation: slide-up 1.5s ease-in-out 2500ms;
       -webkit-animation-fill-mode: both;
       -moz-animation-fill-mode: both;
       animation-fill-mode: both; }
-    .game-message.game-won .mailing-list, .game-message.game-over .mailing-list {
+    .game-message.game-quiz .mailing-list, .game-message.game-over .mailing-list {
       -webkit-animation: fade-in 1.5s ease-in-out 2500ms;
       -moz-animation: fade-in 1.5s ease-in-out 2500ms;
       animation: fade-in 1.5s ease-in-out 2500ms;
@@ -691,27 +695,31 @@ hr {
       line-height: 42px;
       cursor: pointer;
       margin-left: 9px; }
-      .game-message a.keep-playing-button {
+      .game-message a.answer-lhs{
         display: none; }
+      .game-message a.answer-rhs {
+        display: none; }  
     .game-message .score-sharing {
       display: inline-block;
       vertical-align: middle;
       margin-left: 10px; }
-    .game-message.game-won {
+    .game-message.game-quiz {
       background: rgba(237, 194, 46, 0.5);
       color: #f9f6f2; }
-      .game-message.game-won a.keep-playing-button {
+      .game-message.game-quiz a.answer-lhs {
         display: inline-block; }
-    .game-message.game-won, .game-message.game-over {
+      .game-message.game-quiz a.answer-rhs {
+        display: inline-block; }
+    .game-message.game-quiz, .game-message.game-over {
       display: block; }
-      .game-message.game-won p, .game-message.game-over p {
+      .game-message.game-quiz p, .game-message.game-over p {
         -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
         -moz-animation: slide-up 1.5s ease-in-out 2500ms;
         animation: slide-up 1.5s ease-in-out 2500ms;
         -webkit-animation-fill-mode: both;
         -moz-animation-fill-mode: both;
         animation-fill-mode: both; }
-      .game-message.game-won .mailing-list, .game-message.game-over .mailing-list {
+      .game-message.game-quiz .mailing-list, .game-message.game-over .mailing-list {
         -webkit-animation: fade-in 1.5s ease-in-out 2500ms;
         -moz-animation: fade-in 1.5s ease-in-out 2500ms;
         animation: fade-in 1.5s ease-in-out 2500ms;
@@ -828,7 +836,7 @@ hr {
       margin-bottom: 0 !important; }
     .game-message .lower {
       margin-top: 10px !important; }
-    .game-message.game-won .score-sharing {
+    .game-message.game-quiz .score-sharing {
       margin-top: 10px; }
     .game-message.game-over .mailing-list {
       margin-top: 25px; }
